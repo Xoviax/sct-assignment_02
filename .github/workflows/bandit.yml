@@ -1,4 +1,4 @@
-name: Bandit (Python security)
+name: Bandit
 
 on:
   push:
