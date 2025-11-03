@@ -5,7 +5,10 @@ on:
   pull_request:
   workflow_dispatch:
 
-permissions: {}
+permissions:
+  contents: read
+  security-events: write   
+  actions: read            
 
 jobs:
   build:
@@ -49,7 +52,12 @@ jobs:
       - name: Run Bandit (SARIF)
         run: bandit -r . -f sarif -o bandit-results.sarif || true
 
+      - name: List SARIF
+        run: ls -l bandit-results.sarif || echo "SARIF not created"
+
       - name: Upload Bandit SARIF to Code Scanning
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: bandit-results.sarif
+
+
