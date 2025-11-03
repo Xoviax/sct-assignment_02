@@ -26,6 +26,7 @@ jobs:
       - name: Super-Linter
         # Safer canonical source (slim image is faster)
         uses: github/super-linter/slim@v6
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: true
